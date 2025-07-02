@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CAFM API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 CAFM API Connection Test</h1>
+        
+        <div class="test-section">
+            <h3>1. Test Backend Connection</h3>
+            <button onclick="testConnection()">Test Connection</button>
+            <div id="connectionResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Get Available Roles</h3>
+            <button onclick="getRoles()">Get Roles</button>
+            <div id="rolesResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Test Login</h3>
+            <input type="email" id="email" placeholder="Email" value="admin@cafm.com">
+            <input type="password" id="password" placeholder="Password" value="Admin123!">
+            <br>
+            <button onclick="testLogin()">Test Login</button>
+            <div id="loginResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Database Users Check</h3>
+            <p>Run this in SSMS to see users:</p>
+            <pre>USE CAFMSystem;
+SELECT Email, FirstName, LastName, Department FROM AspNetUsers;</pre>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+
+        async function testConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            try {
+                const response = await fetch(`${API_BASE}/auth/roles`);
+                if (response.ok) {
+                    resultDiv.innerHTML = '<div class="success">✅ Backend connection successful!</div>';
+                } else {
+                    resultDiv.innerHTML = '<div class="error">❌ Backend responded with error: ' + response.status + '</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">❌ Cannot connect to backend: ' + error.message + '</div>';
+            }
+        }
+
+        async function getRoles() {
+            const resultDiv = document.getElementById('rolesResult');
+            try {
+                const response = await fetch(`${API_BASE}/auth/roles`);
+                const roles = await response.json();
+                resultDiv.innerHTML = '<div class="success">✅ Roles: ' + JSON.stringify(roles, null, 2) + '</div>';
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">❌ Error: ' + error.message + '</div>';
+            }
+        }
+
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    resultDiv.innerHTML = '<div class="success">✅ Login successful!<br><pre>' + JSON.stringify(result, null, 2) + '</pre></div>';
+                } else {
+                    resultDiv.innerHTML = '<div class="error">❌ Login failed:<br><pre>' + JSON.stringify(result, null, 2) + '</pre></div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">❌ Error: ' + error.message + '</div>';
+            }
+        }
+
+        // Auto-test connection on page load
+        window.onload = function() {
+            testConnection();
+        };
+    </script>
+</body>
+</html>

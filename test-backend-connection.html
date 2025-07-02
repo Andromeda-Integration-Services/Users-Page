@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAFM Backend Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { color: #28a745; font-weight: bold; }
+        .error { color: #dc3545; font-weight: bold; }
+        .warning { color: #ffc107; font-weight: bold; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 CAFM Backend Connection Diagnostic Tool</h1>
+        <p>This tool helps diagnose why manual ticket creation fails while chatbot works.</p>
+
+        <div class="test-section">
+            <h3>1. Backend Connection Test</h3>
+            <button onclick="testBackendConnection()">🔍 Test Backend Connection</button>
+            <div id="connectionResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Authentication Test</h3>
+            <p>First login with test credentials:</p>
+            <input type="email" id="email" placeholder="Email (e.g., admin@cafm.com)" value="admin@cafm.com">
+            <input type="password" id="password" placeholder="Password" value="Admin123!">
+            <button onclick="testLogin()">🔐 Test Login</button>
+            <div id="loginResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Ticket Creation Test</h3>
+            <button onclick="testTicketCreation()" id="ticketTestBtn" disabled>🎫 Test Ticket Creation</button>
+            <div id="ticketResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Comparison: Manual vs Chatbot Data</h3>
+            <button onclick="compareDataFormats()">📊 Compare Data Formats</button>
+            <div id="comparisonResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Quick Fix Instructions</h3>
+            <div class="status" style="background-color: #e7f3ff; border-left: 4px solid #007bff;">
+                <strong>If backend connection fails:</strong>
+                <ol>
+                    <li>Open terminal in CAFMSystem.API folder</li>
+                    <li>Run: <code>dotnet run</code></li>
+                    <li>Wait for "Now listening on: http://localhost:5000"</li>
+                    <li>Refresh this page and test again</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+        let authToken = null;
+        let currentUser = null;
+
+        async function testBackendConnection() {
+            const resultDiv = document.getElementById('connectionResult');
+            resultDiv.innerHTML = '<div class="warning">Testing connection...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/roles`);
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `
+                        <div class="success">✅ Backend connection successful!</div>
+                        <div>Available roles: ${data.join(', ')}</div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Backend responded with error: ${response.status}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">❌ Cannot connect to backend: ${error.message}</div>
+                    <div class="warning">Make sure CAFMSystem.API is running on localhost:5000</div>
+                `;
+            }
+        }
+
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            resultDiv.innerHTML = '<div class="warning">Testing login...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    authToken = data.token;
+                    currentUser = data.user;
+                    document.getElementById('ticketTestBtn').disabled = false;
+                    
+                    resultDiv.innerHTML = `
+                        <div class="success">✅ Login successful!</div>
+                        <div>User: ${data.user.fullName} (${data.user.email})</div>
+                        <div>Roles: ${data.user.roles.join(', ')}</div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Login failed: ${data.message}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Login error: ${error.message}</div>`;
+            }
+        }
+
+        async function testTicketCreation() {
+            const resultDiv = document.getElementById('ticketResult');
+            
+            if (!authToken || !currentUser) {
+                resultDiv.innerHTML = '<div class="error">❌ Please login first</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="warning">Testing ticket creation...</div>';
+            
+            // Test data similar to manual form
+            const testTicketData = {
+                title: "(Service Request) Test ticket from diagnostic tool",
+                description: "This is a test ticket created from the diagnostic tool to verify API functionality.",
+                location: "Test Location",
+                priority: 2,
+                type: 2,
+                requestedByUserId: currentUser.id,
+                onBehalfOf: null
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/tickets`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(testTicketData)
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="success">✅ Ticket creation successful!</div>
+                        <div>Ticket ID: ${data.id}</div>
+                        <div>Title: ${data.title}</div>
+                        <div>Status: ${data.statusText}</div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">❌ Ticket creation failed</div>
+                        <div>Status: ${response.status}</div>
+                        <div>Error: ${data.message || JSON.stringify(data)}</div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Ticket creation error: ${error.message}</div>`;
+            }
+        }
+
+        function compareDataFormats() {
+            const resultDiv = document.getElementById('comparisonResult');
+            
+            const manualFormData = {
+                title: "(Service Request) Water leak in restroom",
+                description: "Water is leaking from the sink",
+                location: "Main Building Restroom",
+                priority: 2,
+                type: 2,
+                requestedByUserId: "user-id-here",
+                onBehalfOf: null
+            };
+            
+            const chatbotData = {
+                title: "Water leak in restroom - Main Building Restroom",
+                description: "Issue: Water leak in restroom\\nCategory: Plumbing\\nLocation: Main Building Restroom\\nPriority: Medium\\n\\nCreated via Chatbot Assistant",
+                location: "Main Building Restroom",
+                priority: 2,
+                requestedByUserId: "user-id-here",
+                onBehalfOf: null
+            };
+            
+            resultDiv.innerHTML = `
+                <h4>Manual Form Data Format:</h4>
+                <pre>${JSON.stringify(manualFormData, null, 2)}</pre>
+                
+                <h4>Chatbot Data Format:</h4>
+                <pre>${JSON.stringify(chatbotData, null, 2)}</pre>
+                
+                <div class="warning">
+                    <strong>Key Differences:</strong>
+                    <ul>
+                        <li>Chatbot includes more detailed description format</li>
+                        <li>Manual form relies on form validation</li>
+                        <li>Both should work with the same API endpoint</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Auto-test connection on page load
+        window.onload = function() {
+            testBackendConnection();
+        };
+    </script>
+</body>
+</html>
