@@ -1,0 +1,249 @@
+/* Quick Actions Styles - Isolated and safe */
+
+.quick-actions-container {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  animation: quickActionsSlideIn 0.4s ease-out;
+}
+
+.quick-actions-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.quick-actions-title {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.quick-actions-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  min-height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Color variants */
+.quick-action-btn.primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+}
+
+.quick-action-btn.info {
+  background: linear-gradient(135deg, #17a2b8, #117a8b);
+  color: white;
+}
+
+.quick-action-btn.secondary {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+}
+
+.quick-action-btn.danger {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+}
+
+.quick-action-btn.warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  color: #212529;
+}
+
+.quick-action-btn.success {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+}
+
+.quick-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.quick-action-btn:active {
+  transform: translateY(0);
+}
+
+.quick-action-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.quick-action-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.quick-actions-footer {
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid #f1f3f4;
+}
+
+.quick-actions-footer small {
+  color: #6c757d;
+  font-size: 11px;
+}
+
+/* Animations */
+@keyframes quickActionsSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects with ripple */
+.quick-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;
+  transform: translate(-50%, -50%);
+}
+
+.quick-action-btn:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .quick-action-btn {
+    padding: 12px 8px;
+    min-height: 70px;
+  }
+  
+  .quick-action-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  
+  .quick-action-label {
+    font-size: 11px;
+  }
+  
+  .quick-actions-container {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-action-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px 16px;
+    min-height: auto;
+  }
+  
+  .quick-action-icon {
+    margin-bottom: 0;
+    margin-right: 12px;
+    font-size: 18px;
+  }
+  
+  .quick-action-label {
+    text-align: left;
+    font-size: 12px;
+  }
+}
+
+/* Ensure no conflicts */
+.quick-actions-container * {
+  box-sizing: border-box;
+}
+
+.quick-actions-container button {
+  font-family: inherit;
+}
+
+/* Special effects for emergency button */
+.quick-action-btn.danger {
+  animation: emergencyPulse 2s infinite;
+}
+
+@keyframes emergencyPulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.5);
+  }
+}
+
+/* Accessibility improvements */
+.quick-action-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.quick-action-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Loading state (for future use) */
+.quick-action-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.quick-action-btn.loading .quick-action-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,169 @@
+/* Chat Widget Styles - Completely isolated, no conflicts with existing styles */
+
+.chat-widget-button {
+  position: fixed;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.chat-widget-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.chat-widget-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.chat-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Theme colors */
+.chat-widget-button.primary .chat-button {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.chat-widget-button.secondary .chat-button {
+  background: linear-gradient(135deg, #6c757d, #495057);
+}
+
+.chat-widget-button.success .chat-button {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+
+.chat-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.chat-button:active {
+  transform: scale(0.95);
+}
+
+.chat-icon {
+  transition: transform 0.3s ease;
+}
+
+.chat-button:hover .chat-icon {
+  transform: rotate(10deg);
+}
+
+/* Notification badge */
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+.has-notification {
+  animation: bounce 1s ease-in-out infinite alternate;
+}
+
+/* Chat Window */
+.chat-window {
+  position: fixed;
+  z-index: 9998;
+  width: 380px;
+  height: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.chat-window.chat-widget-bottom-right {
+  bottom: 90px;
+  right: 20px;
+}
+
+.chat-window.chat-widget-bottom-left {
+  bottom: 90px;
+  left: 20px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chat-window {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 140px);
+    bottom: 90px;
+    left: 20px;
+    right: 20px;
+  }
+  
+  .chat-widget-bottom-left.chat-window,
+  .chat-widget-bottom-right.chat-window {
+    left: 20px;
+    right: 20px;
+  }
+}
+
+/* Ensure no conflicts with existing Bootstrap/Material-UI */
+.chat-widget-button *,
+.chat-window * {
+  box-sizing: border-box;
+}
+
+/* Hide on very small screens if needed */
+@media (max-width: 480px) {
+  .chat-widget-button {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .chat-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}

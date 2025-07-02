@@ -1,0 +1,234 @@
+/* Message Bubble Styles - Isolated and safe */
+
+.message-bubble {
+  display: flex;
+  margin-bottom: 16px;
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+.message-bubble.user {
+  justify-content: flex-end;
+}
+
+.message-bubble.bot {
+  justify-content: flex-start;
+}
+
+.message-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 80%;
+}
+
+.message-bubble.user .message-wrapper {
+  flex-direction: row-reverse;
+}
+
+/* Avatar */
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: white;
+}
+
+.message-avatar.bot {
+  background: linear-gradient(135deg, #6c757d, #495057);
+}
+
+.message-avatar.user {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.avatar-icon {
+  opacity: 0.9;
+}
+
+/* Message Container */
+.message-container {
+  border-radius: 18px;
+  padding: 12px 16px;
+  position: relative;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.message-container.bot {
+  background: white;
+  color: #333;
+  border-bottom-left-radius: 6px;
+}
+
+.message-container.user.primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.message-container.user.secondary {
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.message-container.user.success {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+/* Message Content */
+.message-content {
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.message-line {
+  margin-bottom: 4px;
+}
+
+.message-line:last-child {
+  margin-bottom: 0;
+}
+
+/* Message Time */
+.message-time {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 6px;
+  text-align: right;
+}
+
+.message-container.bot .message-time {
+  text-align: left;
+  color: #6c757d;
+}
+
+/* Action Buttons */
+.message-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.action-btn.primary.primary {
+  background: #007bff;
+  color: white;
+}
+
+.action-btn.primary.secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.action-btn.primary.success {
+  background: #28a745;
+  color: white;
+}
+
+.action-btn.secondary {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #e9ecef;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn.primary:hover {
+  filter: brightness(110%);
+}
+
+.action-btn.secondary:hover {
+  background: #e9ecef;
+  color: #495057;
+}
+
+/* Animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .message-wrapper {
+    max-width: 90%;
+  }
+  
+  .message-container {
+    padding: 10px 14px;
+  }
+  
+  .message-content {
+    font-size: 13px;
+  }
+  
+  .message-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Ensure no conflicts */
+.message-bubble * {
+  box-sizing: border-box;
+}
+
+.message-bubble button {
+  font-family: inherit;
+}
+
+/* Special styling for different message types */
+.message-container.bot {
+  border-left: 3px solid #e9ecef;
+}
+
+.message-bubble.bot .message-container {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+/* Hover effects for interactive messages */
+.message-container:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon spacing in action buttons */
+.action-btn .me-1 {
+  margin-right: 4px;
+}

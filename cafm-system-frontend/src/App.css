@@ -1,0 +1,999 @@
+/* Professional UAE Government CAFM System Styles */
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Enhanced Glass Morphism Cards */
+
+.card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    margin-bottom: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+    transform: translateY(0);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.card:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 12px 30px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-12px) scale(1.03);
+    border-color: rgba(59, 130, 246, 0.4);
+}
+
+
+/* Professional Container Enhancement */
+
+.professional-container {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.professional-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.card-header {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    padding: 1.5rem 2rem;
+    position: relative;
+}
+
+.card-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.card-body {
+    background: rgba(255, 255, 255, 0.98);
+    color: var(--text-primary);
+    padding: 2rem;
+    position: relative;
+}
+
+.card-title {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.025em;
+}
+
+.card-text {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: var(--font-weight-normal);
+}
+
+
+/* Enhanced Professional Buttons */
+
+.btn {
+    border-radius: 16px;
+    font-weight: var(--font-weight-semibold);
+    padding: 14px 28px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--ig-gradient);
+    color: white;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3), 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: var(--ig-gradient-hover);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4), 0 4px 20px rgba(0, 0, 0, 0.15);
+    color: white;
+}
+
+.btn-outline-primary {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--ig-primary);
+    border: 2px solid var(--ig-primary);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+}
+
+.btn-outline-primary:hover {
+    background: var(--ig-primary);
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background: rgba(248, 250, 252, 0.9);
+    color: var(--text-primary);
+    border: 2px solid rgba(226, 232, 240, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary:hover {
+    background: rgba(241, 245, 249, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    color: var(--text-primary);
+}
+
+
+/* Button sizes */
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 13px;
+    border-radius: 12px;
+}
+
+.btn-lg {
+    padding: 18px 36px;
+    font-size: 17px;
+    border-radius: 20px;
+}
+
+
+/* Enhanced Professional Forms */
+
+.form-control,
+.form-select {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    color: var(--text-primary);
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: var(--ig-primary);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 8px 30px rgba(0, 0, 0, 0.12);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    font-weight: var(--font-weight-normal);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus::placeholder {
+    color: transparent;
+    transform: translateY(-10px);
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 12px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+
+/* Floating Label Enhancement */
+
+.floating-label-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.floating-label-group .form-control {
+    padding-top: 24px;
+    padding-bottom: 8px;
+}
+
+.floating-label-group .floating-label {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 255, 255, 0.95) 100%);
+    padding: 0 8px;
+    margin-left: -8px;
+}
+
+.floating-label-group .form-control:focus+.floating-label,
+.floating-label-group .form-control:not(:placeholder-shown)+.floating-label {
+    top: -8px;
+    left: 16px;
+    font-size: 12px;
+    color: var(--ig-primary);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+/* Enhanced Input Icons */
+
+.input-icon-group {
+    position: relative;
+}
+
+.input-icon-group .form-control {
+    padding-left: 50px;
+}
+
+.input-icon-group .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ig-primary);
+    font-size: 16px;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.input-icon-group .form-control:focus~.input-icon {
+    color: var(--ig-secondary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+
+/* Professional Government Badges */
+
+.badge {
+    font-weight: var(--font-weight-medium);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-primary {
+    background: var(--ig-gradient);
+    color: white;
+}
+
+.badge-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.badge-warning {
+    background-color: var(--warning);
+    color: white;
+}
+
+.badge-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+
+/* Professional Government Tables */
+
+.table {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    font-weight: var(--font-weight-medium);
+    padding: 16px 12px;
+}
+
+.table td {
+    border-color: var(--border-color);
+    padding: 12px;
+    color: var(--text-primary);
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>td {
+    background-color: var(--bg-secondary);
+}
+
+.table-hover>tbody>tr:hover>td {
+    background-color: var(--bg-tertiary);
+}
+
+
+/* Enhanced CAFM Navbar with SAP Colors */
+
+.cafm-navbar {
+    background: var(--ig-gradient) !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    transition: all 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.cafm-navbar .navbar-brand {
+    color: white !important;
+    font-weight: var(--font-weight-bold);
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.cafm-navbar .navbar-brand:hover {
+    color: white !important;
+    transform: scale(1.02);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cafm-nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: var(--font-weight-medium);
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin: 0 2px;
+    text-decoration: none;
+}
+
+.cafm-nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cafm-nav-link:focus {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+}
+
+.cafm-nav-dropdown .dropdown-toggle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: var(--font-weight-medium);
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: none !important;
+    border: none !important;
+}
+
+.cafm-nav-dropdown .dropdown-toggle:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cafm-nav-dropdown .dropdown-toggle:focus {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    outline: 2px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
+    box-shadow: none !important;
+}
+
+.cafm-nav-dropdown .dropdown-toggle::after {
+    border-top-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.2s ease;
+}
+
+.cafm-nav-dropdown .dropdown-menu {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px var(--shadow-medium);
+    margin-top: 8px;
+    min-width: 180px;
+}
+
+.cafm-nav-dropdown .dropdown-item {
+    color: var(--text-primary);
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+    margin: 2px 4px;
+}
+
+.cafm-nav-dropdown .dropdown-item:hover {
+    background-color: var(--bg-secondary);
+    color: var(--ig-primary);
+    transform: translateX(4px);
+}
+
+.cafm-nav-dropdown .dropdown-item:focus {
+    background-color: var(--bg-secondary);
+    color: var(--ig-primary);
+    outline: 2px solid var(--ig-primary);
+    outline-offset: 2px;
+}
+
+.cafm-nav-dropdown .dropdown-divider {
+    border-color: var(--border-color);
+    margin: 4px 8px;
+}
+
+
+/* Navbar Toggle Button Styling */
+
+.cafm-navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.cafm-navbar .navbar-toggler:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cafm-navbar .navbar-toggler:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.cafm-navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* Responsive Design for Navbar */
+
+@media (max-width: 991.98px) {
+    .cafm-navbar .navbar-collapse {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 8px;
+        padding: 16px;
+        backdrop-filter: blur(10px);
+    }
+    .cafm-nav-link {
+        margin: 4px 0;
+        padding: 12px 16px !important;
+    }
+    .cafm-nav-dropdown .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+}
+
+
+/* Professional Typography Classes */
+
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-bold);
+}
+
+.text-professional {
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.025em;
+}
+
+.text-display {
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.025em;
+}
+
+
+/* Professional Animation Classes */
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.fade-in-up.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.fade-in-up.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up.delay-3 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scale-on-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-on-hover:hover {
+    transform: scale(1.05);
+}
+
+
+/* Professional Glass Effect */
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.glass-effect-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+}
+
+
+/* Legacy navbar support */
+
+.navbar {
+    background: var(--ig-gradient) !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: var(--font-weight-bold);
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: var(--font-weight-medium);
+    padding: 8px 16px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Theme Toggle Button */
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--ig-gradient);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--shadow-medium);
+}
+
+
+/* Professional Government Animations */
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Professional Government Scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ig-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ig-secondary);
+}
+
+
+/* Feature Cards */
+
+.feature-card {
+    transition: all 0.3s ease;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+
+/* Professional Government Gradients */
+
+.ig-gradient-bg {
+    background: var(--ig-gradient);
+}
+
+.ig-gradient-text {
+    background: var(--ig-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* Loading Spinner */
+
+.spinner-instagram {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--ig-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Alert Styles */
+
+.alert {
+    border-radius: 12px;
+    border: none;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: rgba(0, 200, 81, 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.alert-danger {
+    background-color: rgba(255, 68, 68, 0.1);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+.alert-warning {
+    background-color: rgba(255, 136, 0, 0.1);
+    color: var(--warning);
+    border-left: 4px solid var(--warning);
+}
+
+.alert-info {
+    background-color: rgba(51, 181, 229, 0.1);
+    color: var(--info);
+    border-left: 4px solid var(--info);
+}
+
+
+/* Modal Styles */
+
+.modal-content {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px var(--shadow-medium);
+}
+
+.modal-header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.modal-title {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+.modal-body {
+    color: var(--text-primary);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+
+/* Enhanced Professional Styling */
+
+
+/* Professional Table Enhancements */
+
+.table {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table th {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+    backdrop-filter: blur(10px);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.1);
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    font-weight: var(--font-weight-medium);
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+
+/* Enhanced Badge Styling */
+
+.badge {
+    font-weight: var(--font-weight-semibold);
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Professional Focus Styles */
+
+:focus-visible {
+    outline: 2px solid var(--ig-primary);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+
+/* Enhanced Scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(248, 250, 252, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--ig-primary) 0%, var(--ig-secondary) 100%);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--ig-secondary) 0%, var(--ig-primary) 100%);
+}
+
+
+/* Professional Animation Enhancements */
+
+.fade-in {
+    animation: fadeInProfessional 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInProfessional {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.slide-in {
+    animation: slideInProfessional 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInProfessional {
+    from {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 45px;
+        height: 45px;
+    }
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+    /* Mobile form enhancements */
+    .form-control,
+    .form-select {
+        padding: 14px 18px;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+    }
+    .floating-label-group .form-control {
+        padding-top: 22px;
+        padding-bottom: 6px;
+    }
+    .btn {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+    .card {
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+    }
+    .card-body {
+        padding: 1.5rem;
+    }
+}

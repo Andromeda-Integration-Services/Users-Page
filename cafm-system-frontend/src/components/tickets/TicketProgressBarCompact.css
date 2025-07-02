@@ -1,0 +1,178 @@
+/* Compact Ticket Progress Bar Styles */
+.ticket-progress-compact {
+  width: 100%;
+  max-width: 200px;
+}
+
+.ticket-progress-compact.xs {
+  max-width: 120px;
+}
+
+.ticket-progress-compact.sm {
+  max-width: 160px;
+}
+
+.progress-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.ticket-progress-compact.xs .progress-label {
+  font-size: 0.7rem;
+}
+
+.progress-wrapper {
+  position: relative;
+  height: 8px;
+}
+
+.ticket-progress-compact.xs .progress-wrapper {
+  height: 6px;
+}
+
+.compact-progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  overflow: visible;
+  background: transparent !important;
+}
+
+.compact-progress-bar .progress-bar {
+  background: linear-gradient(to right, #dc3545 0%, #ffc107 25%, #17a2b8 50%, #007bff 75%, #28a745 100%) !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.compact-progress-bar.cancelled-bar .progress-bar {
+  background: repeating-linear-gradient(
+    45deg,
+    #dc3545,
+    #dc3545 6px,
+    #f8f9fa 6px,
+    #f8f9fa 12px
+  ) !important;
+  opacity: 0.6;
+}
+
+/* Progress Indicators */
+.progress-indicators {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  pointer-events: none;
+}
+
+.ticket-progress-compact.xs .progress-indicators {
+  top: -1px;
+  height: 8px;
+}
+
+.progress-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+.ticket-progress-compact.xs .progress-dot {
+  width: 6px;
+  height: 6px;
+}
+
+.progress-dot.active {
+  background-color: #28a745;
+  border-color: #28a745;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.progress-dot.cancelled {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  opacity: 0.6;
+}
+
+/* Cancelled State */
+.ticket-progress-compact.cancelled {
+  opacity: 0.8;
+}
+
+.ticket-progress-compact.cancelled .progress-label {
+  text-decoration: line-through;
+}
+
+/* Hover Effects */
+.ticket-progress-compact:hover .compact-progress-bar .progress-bar {
+  transform: scaleY(1.2);
+}
+
+.ticket-progress-compact:hover .progress-dot.active {
+  transform: translateX(-50%) scale(1.3);
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .ticket-progress-compact {
+    max-width: 100px;
+  }
+  
+  .progress-label {
+    font-size: 0.65rem;
+  }
+  
+  .progress-wrapper {
+    height: 6px;
+  }
+  
+  .progress-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Animation for active progress */
+@keyframes progressPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(40, 167, 69, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+  }
+}
+
+.progress-dot.active:last-of-type {
+  animation: progressPulse 2s infinite;
+}
+
+/* Accessibility */
+.ticket-progress-compact {
+  cursor: help;
+}
+
+.ticket-progress-compact[title] {
+  cursor: help;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .progress-dot {
+    background-color: #495057;
+    border-color: #6c757d;
+  }
+  
+  .progress-dot.active {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+}

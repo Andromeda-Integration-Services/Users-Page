@@ -1,0 +1,397 @@
+/* Import Professional Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* Import Tailwind CSS */
+
+@import './styles/tailwind.css';
+:root {
+    /* SAP Color Palette - Primary Colors */
+    --sap-blue: #0070f2;
+    /* SAP Blue */
+    --sap-dark-blue: #003d6b;
+    /* SAP Dark Blue */
+    --sap-light-blue: #d1efff;
+    /* SAP Light Blue */
+    --sap-green: #30914c;
+    /* SAP Green */
+    --sap-orange: #ff8c00;
+    /* SAP Orange */
+    --sap-red: #bb0000;
+    /* SAP Red */
+    --sap-yellow: #ffeb3b;
+    /* SAP Yellow */
+    --sap-purple: #8875ff;
+    /* SAP Purple */
+    /* NEW COLORFUL PALETTE - Green, Blue, Pink & Red */
+    --primary-green: #10b981;
+    /* Emerald Green */
+    --primary-blue: #3b82f6;
+    /* Bright Blue */
+    --primary-pink: #ec4899;
+    /* Hot Pink */
+    --primary-red: #ef4444;
+    /* Bright Red */
+    /* Extended Palette */
+    --secondary-green: #059669;
+    /* Dark Green */
+    --secondary-blue: #1d4ed8;
+    /* Dark Blue */
+    --secondary-pink: #be185d;
+    /* Dark Pink */
+    --secondary-red: #dc2626;
+    /* Dark Red */
+    /* Light Variants */
+    --light-green: #d1fae5;
+    /* Light Green */
+    --light-blue: #dbeafe;
+    /* Light Blue */
+    --light-pink: #fce7f3;
+    /* Light Pink */
+    --light-red: #fee2e2;
+    /* Light Red */
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    /* Pure white background */
+    --bg-secondary: #f8fafc;
+    /* Light gray background */
+    --bg-tertiary: #f1f5f9;
+    /* Slightly darker gray */
+    --text-primary: #1f2937;
+    /* Dark text */
+    --text-secondary: #6b7280;
+    /* Gray text */
+    --text-muted: #9ca3af;
+    /* Light gray text */
+    --border-color: #e5e7eb;
+    /* Light border */
+    /* Instagram-style Variables for Navbar */
+    --ig-primary: var(--sap-blue);
+    --ig-secondary: var(--sap-dark-blue);
+    --ig-gradient: linear-gradient(135deg, var(--sap-blue) 0%, var(--sap-dark-blue) 100%);
+    --ig-gradient-hover: linear-gradient(135deg, var(--sap-dark-blue) 0%, var(--sap-blue) 100%);
+    /* Shadow Variables */
+    --shadow-light: rgba(0, 112, 242, 0.1);
+    --shadow-medium: rgba(0, 112, 242, 0.2);
+    --shadow-heavy: rgba(0, 112, 242, 0.3);
+    /* Status Colors */
+    --success: #30914c;
+    --warning: #ff8c00;
+    --danger: #bb0000;
+    --info: #0070f2;
+    /* Colorful Gradients */
+    --gradient-green-blue: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    --gradient-pink-red: linear-gradient(135deg, #ec4899 0%, #ef4444 100%);
+    --gradient-blue-pink: linear-gradient(135deg, #3b82f6 0%, #ec4899 100%);
+    --gradient-rainbow: linear-gradient(135deg, #10b981 0%, #3b82f6 25%, #ec4899 75%, #ef4444 100%);
+    --gradient-sap: linear-gradient(135deg, var(--sap-blue) 0%, var(--sap-green) 100%);
+    /* Professional Typography */
+    --font-family-primary: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family-secondary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family-display: 'Playfair Display', Georgia, serif;
+    --font-family: var(--font-family-primary);
+    --font-size-base: 16px;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --line-height: 1.6;
+}
+
+
+/* Dark Theme */
+
+[data-theme="dark"] {
+    /* Professional Dark Theme Colors */
+    --primary-green: #34d399;
+    /* Bright Emerald Green */
+    --primary-blue: #60a5fa;
+    /* Bright Blue */
+    --primary-pink: #f472b6;
+    /* Bright Pink */
+    --primary-red: #f87171;
+    /* Bright Red */
+    /* Extended Dark Palette */
+    --secondary-green: #10b981;
+    /* Medium Green */
+    --secondary-blue: #3b82f6;
+    /* Medium Blue */
+    --secondary-pink: #ec4899;
+    /* Medium Pink */
+    --secondary-red: #ef4444;
+    /* Medium Red */
+    /* Professional Dark Theme Backgrounds */
+    --bg-primary: #0f172a;
+    /* Professional dark navy */
+    --bg-secondary: #1e293b;
+    /* Darker professional gray */
+    --bg-tertiary: #334155;
+    /* Medium professional gray */
+    --text-primary: #f8fafc;
+    /* Clean white text */
+    --text-secondary: #cbd5e1;
+    /* Professional gray text */
+    --text-muted: #94a3b8;
+    /* Muted professional text */
+    --border-color: #475569;
+    /* Professional dark border */
+    /* SAP Color Palette - Dark Theme Variants */
+    --sap-blue: #4da6ff;
+    /* Lighter SAP Blue for dark theme */
+    --sap-dark-blue: #0070f2;
+    /* Standard SAP Blue */
+    --sap-light-blue: #1e3a8a;
+    /* Professional dark blue variant */
+    --sap-green: #4ade80;
+    /* Lighter SAP Green */
+    --sap-orange: #ffa726;
+    /* Lighter SAP Orange */
+    --sap-red: #ef4444;
+    /* Lighter SAP Red */
+    --sap-yellow: #ffd54f;
+    /* Lighter SAP Yellow */
+    --sap-purple: #a78bfa;
+    /* Lighter SAP Purple */
+    /* Professional Variables for Dark Theme */
+    --ig-primary: var(--sap-blue);
+    --ig-secondary: var(--sap-dark-blue);
+    --ig-gradient: linear-gradient(135deg, var(--sap-blue) 0%, var(--sap-dark-blue) 100%);
+    --ig-gradient-hover: linear-gradient(135deg, var(--sap-dark-blue) 0%, var(--sap-blue) 100%);
+    /* Shadow Variables for Dark Theme */
+    --shadow-light: rgba(77, 166, 255, 0.15);
+    --shadow-medium: rgba(77, 166, 255, 0.25);
+    --shadow-heavy: rgba(77, 166, 255, 0.35);
+    /* Status Colors for Dark Theme */
+    --success: #4ade80;
+    --warning: #ffa726;
+    --danger: #ef4444;
+    --info: #4da6ff;
+    /* Professional Dark Theme Gradients */
+    --gradient-green-blue: linear-gradient(135deg, #34d399 0%, #60a5fa 100%);
+    --gradient-pink-red: linear-gradient(135deg, #f472b6 0%, #f87171 100%);
+    --gradient-blue-pink: linear-gradient(135deg, #60a5fa 0%, #f472b6 100%);
+    --gradient-rainbow: linear-gradient(135deg, #34d399 0%, #60a5fa 25%, #f472b6 75%, #f87171 100%);
+    --gradient-sap: linear-gradient(135deg, var(--sap-blue) 0%, var(--sap-green) 100%);
+}
+
+/* Professional Dark Theme Background Override */
+[data-theme="dark"] body {
+    /* Professional UAE Government Dark Background */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+    background-attachment: fixed;
+    background-size: 300% 300%;
+    animation: subtleGradientShift 60s ease infinite;
+}
+
+/* Professional Dark Theme Pattern Overlay */
+[data-theme="dark"] body::before {
+    background-image: 
+        /* Subtle grid pattern for dark theme */
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        /* Professional geometric pattern */
+        radial-gradient(circle at 20% 20%, rgba(77, 166, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(74, 222, 128, 0.03) 0%, transparent 40%),
+        /* Subtle texture */
+        linear-gradient(45deg, rgba(255, 255, 255, 0.005) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.005) 25%, transparent 25%);
+    opacity: 0.4;
+}
+
+/* Professional Dark Theme UAE Colors Accent */
+[data-theme="dark"] body::after {
+    background-image: 
+        /* UAE Flag inspired subtle accents for dark theme */
+        radial-gradient(ellipse at 10% 90%, rgba(77, 166, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 10%, rgba(74, 222, 128, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 50%, rgba(239, 68, 68, 0.03) 0%, transparent 70%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height);
+    color: var(--text-primary);
+    /* Professional UAE Government Background */
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+    background-attachment: fixed;
+    background-size: 300% 300%;
+    animation: subtleGradientShift 60s ease infinite;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Professional Government Pattern Overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* Subtle grid pattern */
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        /* Professional geometric pattern */
+        radial-gradient(circle at 20% 20%, rgba(0, 112, 242, 0.02) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(48, 145, 76, 0.02) 0%, transparent 40%),
+        /* Subtle texture */
+        linear-gradient(45deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%);
+    background-size: 
+        40px 40px,
+        40px 40px,
+        400px 400px,
+        400px 400px,
+        20px 20px,
+        20px 20px;
+    background-position: 
+        0 0,
+        0 0,
+        0 0,
+        200px 200px,
+        0 0,
+        10px 10px;
+    pointer-events: none;
+    z-index: -2;
+    opacity: 0.6;
+}
+
+/* Professional UAE Colors Accent */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* UAE Flag inspired subtle accents */
+        radial-gradient(ellipse at 10% 90%, rgba(0, 112, 242, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 10%, rgba(48, 145, 76, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 50%, rgba(187, 0, 0, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    animation: professionalFloat 120s ease-in-out infinite;
+}
+
+/* Subtle Professional Animations */
+@keyframes subtleGradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 25% 25%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 75% 75%;
+    }
+}
+
+@keyframes professionalFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.4;
+    }
+    33% {
+        transform: translateY(-5px) scale(1.01);
+        opacity: 0.3;
+    }
+    66% {
+        transform: translateY(3px) scale(0.99);
+        opacity: 0.5;
+    }
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-pink);
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    color: var(--text-primary);
+    font-family: var(--font-family-primary);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-extrabold);
+    font-family: var(--font-family-display);
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+}
+
+h3 {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-medium);
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+
+/* Focus styles for accessibility */
+
+:focus-visible {
+    outline: 2px solid var(--ig-primary);
+    outline-offset: 2px;
+}
