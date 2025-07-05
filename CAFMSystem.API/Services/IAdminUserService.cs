@@ -6,6 +6,7 @@ namespace CAFMSystem.API.Services
     {
         // User Management CRUD
         Task<IEnumerable<AdminUserDto>> GetAllUsersAsync(int pageNumber = 1, int pageSize = 10, string? searchTerm = null, string? department = null, string? role = null);
+        Task<IEnumerable<AdminUserDto>> GetAllUsersUnpaginatedAsync(string? searchTerm = null, string? department = null, string? role = null);
         Task<AdminUserDto?> GetUserByIdAsync(string userId);
         Task<AdminUserDto> CreateUserAsync(CreateUserDto createUserDto);
         Task<AdminUserDto> UpdateUserAsync(string userId, UpdateUserDto updateUserDto);

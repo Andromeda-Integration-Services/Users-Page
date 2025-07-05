@@ -112,6 +112,8 @@ namespace CAFMSystem.API.DTOs
         public string FullName { get; set; } = string.Empty;
         public string Department { get; set; } = string.Empty;
         public string EmployeeId { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; }
+        public bool EmailConfirmed { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
         public DateTime CreatedAt { get; set; }
         public DateTime? LastLoginAt { get; set; }

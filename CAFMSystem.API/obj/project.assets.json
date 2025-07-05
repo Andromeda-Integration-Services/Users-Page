@@ -4357,11 +4357,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\TARS\\Recovered-main\\CAFMSystem.API\\CAFMSystem.API.csproj",
+      "projectUniqueName": "C:\\Saved\\Recovered-main\\CAFMSystem.API\\CAFMSystem.API.csproj",
       "projectName": "CAFMSystem.API",
-      "projectPath": "C:\\TARS\\Recovered-main\\CAFMSystem.API\\CAFMSystem.API.csproj",
+      "projectPath": "C:\\Saved\\Recovered-main\\CAFMSystem.API\\CAFMSystem.API.csproj",
       "packagesPath": "C:\\Users\\devel\\.nuget\\packages\\",
-      "outputPath": "C:\\TARS\\Recovered-main\\CAFMSystem.API\\obj\\",
+      "outputPath": "C:\\Saved\\Recovered-main\\CAFMSystem.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\devel\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -46,6 +46,29 @@ namespace CAFMSystem.API.Controllers
         }
 
         /// <summary>
+        /// Get all users without pagination
+        /// </summary>
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<AdminUserDto>>> GetAllUsersUnpaginated(
+            [FromQuery] string? searchTerm = null,
+            [FromQuery] string? department = null,
+            [FromQuery] string? role = null)
+        {
+            try
+            {
+                _logger.LogInformation("Admin {AdminId} requesting all users (unpaginated)", User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+                var users = await _adminUserService.GetAllUsersUnpaginatedAsync(searchTerm, department, role);
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving all users");
+                return StatusCode(500, new { message = "An error occurred while retrieving users" });
+            }
+        }
+
+        /// <summary>
         /// Get user by ID
         /// </summary>
         [HttpGet("{userId}")]

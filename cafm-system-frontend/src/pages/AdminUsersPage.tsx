@@ -59,7 +59,7 @@ const AdminUsersPage: React.FC = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      console.log('Fetching users with mock data...');
+      console.log('Fetching users from API...');
       const usersData = await adminUserService.getAllUsers(
         pageNumber,
         pageSize,

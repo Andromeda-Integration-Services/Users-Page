@@ -149,7 +149,7 @@ const mockUserStats: UserStatistics = {
 };
 
 // Flag to determine if we should use mock data
-const USE_MOCK_DATA = true; // Set to false when backend is ready
+const USE_MOCK_DATA = false; // Set to false when backend is ready
 
 // API Response interfaces
 export interface ApiResponse<T> {
@@ -387,6 +387,48 @@ const adminUserService = {
     if (role) params.append('role', role);
 
     const response = await apiClient.get<AdminUser[]>(`/admin/adminusers?${params}`);
+    return response.data;
+  },
+
+  getAllUsersUnpaginated: async (
+    searchTerm?: string,
+    department?: string,
+    role?: string
+  ): Promise<AdminUser[]> => {
+    if (USE_MOCK_DATA) {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      let filteredUsers = [...mockUsers];
+
+      // Apply filters
+      if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        filteredUsers = filteredUsers.filter(user =>
+          user.fullName.toLowerCase().includes(term) ||
+          user.email.toLowerCase().includes(term) ||
+          user.employeeId.toLowerCase().includes(term)
+        );
+      }
+
+      if (department) {
+        filteredUsers = filteredUsers.filter(user => user.department === department);
+      }
+
+      if (role) {
+        filteredUsers = filteredUsers.filter(user => user.roles.includes(role));
+      }
+
+      return filteredUsers;
+    }
+
+    const params = new URLSearchParams();
+
+    if (searchTerm) params.append('searchTerm', searchTerm);
+    if (department) params.append('department', department);
+    if (role) params.append('role', role);
+
+    const response = await apiClient.get<AdminUser[]>(`/admin/adminusers/all?${params}`);
     return response.data;
   },
 

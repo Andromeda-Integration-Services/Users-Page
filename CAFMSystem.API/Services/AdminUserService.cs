@@ -77,6 +77,80 @@ namespace CAFMSystem.API.Services
                     FullName = user.FullName,
                     Department = user.Department,
                     EmployeeId = user.EmployeeId,
+                    PhoneNumber = user.PhoneNumber,
+                    EmailConfirmed = user.EmailConfirmed,
+                    Roles = roles.ToList(),
+                    CreatedAt = user.CreatedAt,
+                    LastLoginAt = user.LastLoginAt,
+                    IsActive = user.IsActive,
+                    TotalTicketsCreated = ticketsCreated,
+                    TotalTicketsAssigned = ticketsAssigned,
+                    TotalTicketsCompleted = ticketsCompleted,
+                    UnreadMessages = unreadMessages,
+                    LastActivityAt = lastActivity
+                });
+            }
+
+            return adminUserDtos;
+        }
+
+        public async Task<IEnumerable<AdminUserDto>> GetAllUsersUnpaginatedAsync(string? searchTerm = null, string? department = null, string? role = null)
+        {
+            var query = _userManager.Users.AsQueryable();
+
+            // Apply filters
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                query = query.Where(u => u.FirstName.Contains(searchTerm) ||
+                                        u.LastName.Contains(searchTerm) ||
+                                        u.Email.Contains(searchTerm) ||
+                                        u.EmployeeId.Contains(searchTerm));
+            }
+
+            if (!string.IsNullOrWhiteSpace(department))
+            {
+                query = query.Where(u => u.Department == department);
+            }
+
+            // Get all users without pagination - ordered by Department, then EmployeeId to match SSMS
+            var users = await query
+                .OrderBy(u => u.Department)
+                .ThenBy(u => u.EmployeeId)
+                .ThenBy(u => u.FirstName)
+                .ToListAsync();
+
+            var adminUserDtos = new List<AdminUserDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                // Skip if role filter is specified and user doesn't have that role
+                if (!string.IsNullOrWhiteSpace(role) && !roles.Contains(role))
+                    continue;
+
+                // Get user statistics
+                var ticketsCreated = await _context.Tickets.CountAsync(t => t.CreatedById == user.Id);
+                var ticketsAssigned = await _context.Tickets.CountAsync(t => t.AssignedToId == user.Id);
+                var ticketsCompleted = await _context.Tickets.CountAsync(t => t.AssignedToId == user.Id && t.Status == TicketStatus.Resolved);
+                var unreadMessages = await _context.AdminMessages.CountAsync(m => m.ToUserId == user.Id && !m.IsRead && !m.IsDeleted);
+                var lastActivity = await _context.UserActivities
+                    .Where(a => a.UserId == user.Id)
+                    .OrderByDescending(a => a.Timestamp)
+                    .Select(a => a.Timestamp)
+                    .FirstOrDefaultAsync();
+
+                adminUserDtos.Add(new AdminUserDto
+                {
+                    Id = user.Id,
+                    Email = user.Email!,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    FullName = user.FullName,
+                    Department = user.Department,
+                    EmployeeId = user.EmployeeId,
+                    PhoneNumber = user.PhoneNumber,
+                    EmailConfirmed = user.EmailConfirmed,
                     Roles = roles.ToList(),
                     CreatedAt = user.CreatedAt,
                     LastLoginAt = user.LastLoginAt,
@@ -119,6 +193,8 @@ namespace CAFMSystem.API.Services
                 FullName = user.FullName,
                 Department = user.Department,
                 EmployeeId = user.EmployeeId,
+                PhoneNumber = user.PhoneNumber,
+                EmailConfirmed = user.EmailConfirmed,
                 Roles = roles.ToList(),
                 CreatedAt = user.CreatedAt,
                 LastLoginAt = user.LastLoginAt,
